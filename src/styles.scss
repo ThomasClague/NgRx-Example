@@ -1,0 +1,130 @@
+/* You can add global styles to this file, and also import other style files */
+$theme-colors: (
+	"primary": #0021FF,
+	"white": #fff,
+	"light": #f2f2f2
+);
+
+$enable-responsive-font-sizes: true;
+$font-family-base: 'museo-sans-rounded', sans-serif;
+$font-weight-base: 500;
+$body-color: #4d4d4d;
+$headings-line-height: 1;
+$line-height-base: 1.25;
+// $line-height-sm: 1.25;
+// $line-height-lg: 2;
+$headings-margin-bottom: .5em;
+$paragraph-margin-bottom: 1.25rem;
+$border-radius: .4em;
+
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+
+
+
+@mixin global-shadow {
+	box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);	
+}
+
+.no-resize {
+	resize: none;
+}
+
+.no-decoration,
+.no-decoration:hover {
+	text-decoration: none;
+}
+
+
+.lead {
+	font-size: 1.1rem;
+
+	@include media-breakpoint-up(sm) {
+		font-size: 1.25rem;
+	}
+}
+
+.container,
+.navbar .container {
+	max-width: 1366px;
+	padding-left: 1.5em;
+	padding-right: 1.5em;
+
+	@include media-breakpoint-up(md) {
+		padding-left: 1.75em;
+		padding-right: 1.75em;
+	}
+
+	@include media-breakpoint-up(lg) {
+		padding-left: 2.5em;
+		padding-right: 2.5em;
+	}
+}
+
+.site-navbar {
+	background-color: #fff;
+	box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+	padding: 0;
+	padding-top: .75em;
+	padding-bottom: .75em;
+
+	@include media-breakpoint-up(md) {
+		padding-top: 1.25em;
+		padding-bottom: 1.25em;
+	}
+
+	.navbar-brand {
+		max-width: 12rem;
+
+		@include media-breakpoint-up(md) {
+			max-width: 14rem;
+		}
+
+		img {
+			width: 100%;
+		}
+	}
+
+	.nav-item {
+
+		a {
+			font-weight: 700;
+			color: $body-color;
+		}
+	}
+
+}
+
+.navbar-nav {
+
+	&:first-of-type {
+		margin-top: 1em;
+
+		@include media-breakpoint-up(md) {
+			margin-top: 0;
+		}
+
+		@include media-breakpoint-up(lg) {
+			margin-left: 2em;
+		}
+
+		.nav-item:first-of-type {
+			border-top: 0;
+		}
+
+	}
+
+	.nav-item {
+		border-top: 2px solid #f2f2f2;
+		font-size: 1.1rem;
+		padding-top: .25rem;
+		padding-bottom: .25rem;
+
+		@include media-breakpoint-up(md) {
+			border: 0;
+			font-size: 1rem;
+			padding: 0;
+		}
+	
+	}
+
+}
