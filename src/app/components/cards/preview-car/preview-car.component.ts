@@ -2,17 +2,14 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CarPreview } from 'src/app/_interfaces/car/car-preview';
 
 @Component({
-  selector: 'app-preview-car',
-  templateUrl: './preview-car.component.html',
-  styleUrls: ['./preview-car.component.sass']
+	selector: 'app-preview-car',
+	templateUrl: './preview-car.component.html',
+	styleUrls: ['./preview-car.component.sass'],
 })
 export class PreviewCarComponent implements OnInit {
+	@Input() car: CarPreview;
 
-  @Input() car: CarPreview;
-  
-  constructor() { }
+	constructor() {}
 
-  ngOnInit(): void {
-  }
-
+	ngOnInit(): void {}
 }

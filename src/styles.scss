@@ -22,11 +22,15 @@ $border-radius: .4em;
 
 
 @mixin global-shadow {
-	box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);	
+	box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
 }
 
 .no-resize {
 	resize: none;
+}
+
+input.ng-invalid {
+  color: red
 }
 
 .no-decoration,
@@ -124,7 +128,7 @@ $border-radius: .4em;
 			font-size: 1rem;
 			padding: 0;
 		}
-	
+
 	}
 
 }

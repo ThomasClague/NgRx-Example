@@ -1,0 +1,65 @@
+<div class="container py-5">
+	<form [formGroup]="form" autocomplete="off" novalidate (ngSubmit)="submit(form.value)">
+		<div class="form-group">
+			<label for="username">Username</label>
+			<input type="text" class="form-control form-control-lg" [ngClass]="
+					validateControl('username') && hasError('username', 'required')
+						? 'is-invalid'
+						: ''
+				" formControlName="username" id="username" />
+			<div *ngIf="validateControl('username') && hasError('username', 'required')" class="invalid-feedback">
+				Please enter your username.
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="password">Password</label>
+			<input type="password" class="form-control form-control-lg" [ngClass]="
+					validateControl('password') && hasError('password', 'required')
+						? 'is-invalid'
+						: ''
+				" formControlName="password" id="password" />
+			<div *ngIf="validateControl('password') && hasError('password', 'required')" class="invalid-feedback">
+				Please enter your password.
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="firstname">Firstname</label>
+			<input type="firstname" class="form-control form-control-lg" [ngClass]="
+					validateControl('firstname') && hasError('firstname', 'required')
+						? 'is-invalid'
+						: ''
+				" formControlName="firstname" id="firstname" />
+			<div *ngIf="validateControl('firstname') && hasError('firstname', 'required')" class="invalid-feedback">
+				Please enter your first name.
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="lastname">Lastname</label>
+			<input type="lastname" class="form-control form-control-lg" [ngClass]="
+					validateControl('lastname') && hasError('lastname', 'required')
+						? 'is-invalid'
+						: ''
+				" formControlName="lastname" id="lastname" />
+			<div *ngIf="validateControl('lastname') && hasError('lastname', 'required')" class="invalid-feedback">
+				Please enter your last name.
+			</div>
+		</div>
+		<div class="alert alert-danger" role="alert" *ngIf="errors.length > 0">
+			<ul>
+				<li *ngFor="let error of errors">
+					{{ error }}
+				</li>
+			</ul>
+		</div>
+
+		<button class="btn btn-lg btn-primary" type="submit" [disabled]="!form.valid">
+			Register
+			<span *ngIf="isLoading; else arrow" class="spinner-border spinner-border-sm" role="status"
+				aria-hidden="true"></span>
+			<ng-template #arrow><i class="fa fa-arrow-right"></i></ng-template>
+		</button>
+	</form>
+	<div class="d-block mt-4">
+		<a [routerLink]="['/register']" class="no-decoration">Don't have an account?</a>
+	</div>
+</div>

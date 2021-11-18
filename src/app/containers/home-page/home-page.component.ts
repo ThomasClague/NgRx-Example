@@ -3,24 +3,19 @@ import { Observable, of } from 'rxjs';
 import { CarPreview } from 'src/app/_interfaces/car/car-preview';
 
 @Component({
-  selector: 'app-home-page',
-  templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.sass']
+	selector: 'app-home-page',
+	templateUrl: './home-page.component.html',
+	styleUrls: ['./home-page.component.sass'],
 })
 export class HomePageComponent implements OnInit {
+	cars$: Observable<CarPreview[]>;
 
-  cars$: Observable<CarPreview[]>;
-  
-  constructor() { }
+	constructor() {}
 
-  ngOnInit(): void {
-    
-    //action to load cars
-    // this.store$.dispatch(
-    //     new LoginStoreActions.LogoutAction()
-    // );
+	ngOnInit(): void {
 
-    this.cars$ = of(JSON.parse(`[
+		this.cars$ = of(
+			JSON.parse(`[
         {
             "id": 1,
             "price": 10000,
@@ -57,10 +52,7 @@ export class HomePageComponent implements OnInit {
             "title": "BMW X2 SAC M35i (Sport Auto only) 2.0 5dr",
             "photoUrl": "./assets/placeholder-06.png"
         }
-    ]`));
-
-  }
-
-
-
+    ]`)
+		);
+	}
 }

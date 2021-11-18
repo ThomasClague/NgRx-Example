@@ -9,17 +9,17 @@ import { EffectsModule } from '@ngrx/effects';
 import { environment } from 'src/environments/environment';
 
 export const reducers: ActionReducerMap<RootStoreState.State> = {
-  userFeature: UserReducer,
+	userFeature: UserReducer,
 };
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule,
-    UserStoreModule,
-    StoreModule.forRoot({}),
-    EffectsModule.forRoot([]),
-    !environment.production ? StoreDevtoolsModule.instrument() : []
-  ]
+	declarations: [],
+	imports: [
+		CommonModule,
+		UserStoreModule,
+		StoreModule.forRoot({}),
+		EffectsModule.forRoot([]),
+		!environment.production ? StoreDevtoolsModule.instrument() : [],
+	],
 })
-export class RootStoreModule { }
+export class RootStoreModule {}

@@ -11,9 +11,10 @@ import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 import { User } from '../_interfaces/user/user';
 import { LoginResponse } from '../_interfaces/responses/auth/login-response';
+import { RegisterRequest } from '../_interfaces/requests/auth/register-request';
 
 // array in local storage for registered users
-let users: User[] = []
+let users: User[] = [];
 
 @Injectable()
 export class MockBackendInterceptor implements HttpInterceptor {
@@ -31,7 +32,7 @@ export class MockBackendInterceptor implements HttpInterceptor {
 			.pipe(dematerialize());
 
 		function handleRoute() {
-			console.log('url', url)
+			console.log('url', url);
 			switch (true) {
 				case url.endsWith('/users/authenticate') && method === 'POST':
 					return authenticate();
@@ -54,42 +55,35 @@ export class MockBackendInterceptor implements HttpInterceptor {
 		// route functions
 
 		function authenticate(): Observable<HttpResponse<LoginResponse>> {
-			console.log('in mock authenticate')
+			console.log('in mock authenticate');
 			const { username, password } = body;
 			console.log('body', body);
 			console.log('username', username);
 			const user = users.find((x) => {
-				return x.username === username
-					//&& x.password === password;
+				return x.username === username && x.password === password;
 			});
-			//if (!user) return error('Username or password is incorrect');
+			if (!user) return error('Username or password is incorrect');
 
-			// let userForReturn : LoginResponse = {
-			// 	id: user.id,
-			// 	username: user.username,
-			// 	firstName: user.firstName,
-			// 	lastName: user.lastName,
-			// 	token: 'fake-jwt-token'
-			// }
-			let userForReturn : LoginResponse = {
-				id: 1,
-				username: 'Thomas.Clague',
-				firstName: 'Thomas',
-				lastName: 'Clague',
-				token: 'fake-jwt-token'
-			}
-			console.log('mock authentication response', userForReturn);
-			return ok(userForReturn);
+			console.log('mock authentication response', user);
+			return ok(user);
 		}
 
 		function register() {
-			const user = body;
+			console.log('in register');
+			const userForRegister: RegisterRequest = body;
 
-			if (users.find((x) => x.username === user.username)) {
-				return error('Username "' + user.username + '" is already taken');
+			if (users.find((x) => x.username === userForRegister.username)) {
+				return error('Username "' + userForRegister.username + '" is already taken');
 			}
-
+			let user: User;
 			user.id = users.length ? Math.max(...users.map((x) => x.id)) + 1 : 1;
+
+			user.username = userForRegister.username;
+			user.firstName = userForRegister.firstname;
+			user.lastName = userForRegister.lastname;
+			user.password = userForRegister.password;
+			user.token = 'a fake token';
+
 			users.push(user);
 			localStorage.setItem('users', JSON.stringify(users));
 			return ok();

@@ -1,1 +1,4 @@
-<app-navbar [isLoggedIn]="isLoggedIn$ | async" (loginEvent)="login()" (logOutEvent)="logout()"></app-navbar>
+<app-navbar
+	[isLoggedIn]="isLoggedIn$ | async"
+	(logOutEvent)="logout()"
+></app-navbar>
