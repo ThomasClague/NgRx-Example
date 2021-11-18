@@ -11,6 +11,11 @@ import { NavbarComponent } from './components/nav/navbar/navbar.component';
 import { FooterComponent } from './components/nav/footer/footer.component';
 import { PreviewCarComponent } from './components/cards/preview-car/preview-car.component';
 import { PreviewCarListComponent } from './components/lists/preview-car-list/preview-car-list.component';
+import { RootStoreModule } from './_store';
+import { AuthService } from './_services/auth.service';
+import { ApiUrlService } from './_services/api-url.service';
+import { RepositoryService } from './_services/repository.service';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
 	declarations: [
@@ -25,10 +30,15 @@ import { PreviewCarListComponent } from './components/lists/preview-car-list/pre
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
-		SharedModule
+		SharedModule,
+		RootStoreModule,
+		HttpClientModule
 	],
 	providers: [
-		MockBackendInterceptor
+		AuthService,
+		ApiUrlService,
+		RepositoryService,
+		{ provide: HTTP_INTERCEPTORS, useClass: MockBackendInterceptor, multi: true }
 	],
 	bootstrap: [
 		AppComponent

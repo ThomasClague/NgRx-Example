@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { BehaviorSubject, Observable, of } from 'rxjs';
+import { LoginRequest } from 'src/app/_interfaces/requests/auth/login-request';
+import { UserStoreActions, UserStoreState, UserStoreSelectors } from '../../_store/user-store';
+
 
 @Component({
   selector: 'app-nav-container',
@@ -9,28 +13,24 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
 export class NavContainerComponent implements OnInit {
 
   isLoggedIn$: Observable<boolean>;
-  constructor(
-    // private store$: Store<LoginStoreState.State>,
-  ) { }
+
+  constructor(private store$: Store<UserStoreState.State>) {}
 
   ngOnInit(): void {
-    this.isLoggedIn$ = of(false);
-    // this.isLoggedIn$ = this.store$.select(
-    //   LoginStoreSelectors.selectIsUserLoggedIn
-    // );
-  }
-  
-  logout() {
-    // this.store$.dispatch(
-    //     new LoginStoreActions.LogoutAction()
-    // );
-    this.isLoggedIn$ = of(false);
+    this.isLoggedIn$ = this.store$.select(
+      UserStoreSelectors.isLoggedIn
+    );
   }
 
   login() {
-    // this.store$.dispatch(
-    //     new LoginStoreActions.LoginAction()
-    // );
-    this.isLoggedIn$ = of(true);
+    this.store$.dispatch(
+        UserStoreActions.login({ payload: { username: 'Thomas.Clague', password: 'P4ssword1,' } as LoginRequest})
+    );
   }
+  
+  logout() {
+    this.store$.dispatch(UserStoreActions.logout());
+  }
+
+
 }

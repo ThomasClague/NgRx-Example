@@ -9,7 +9,8 @@ import {
 } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
-import { User } from '../_interfaces/user';
+import { User } from '../_interfaces/user/user';
+import { LoginResponse } from '../_interfaces/responses/auth/login-response';
 
 // array in local storage for registered users
 let users: User[] = []
@@ -30,6 +31,7 @@ export class MockBackendInterceptor implements HttpInterceptor {
 			.pipe(dematerialize());
 
 		function handleRoute() {
+			console.log('url', url)
 			switch (true) {
 				case url.endsWith('/users/authenticate') && method === 'POST':
 					return authenticate();
@@ -51,17 +53,33 @@ export class MockBackendInterceptor implements HttpInterceptor {
 
 		// route functions
 
-		function authenticate() {
+		function authenticate(): Observable<HttpResponse<LoginResponse>> {
+			console.log('in mock authenticate')
 			const { username, password } = body;
-			const user = users.find((x) => x.username === username && x.password === password);
-			if (!user) return error('Username or password is incorrect');
-			return ok({
-				id: user.id,
-				username: user.username,
-				firstName: user.firstName,
-				lastName: user.lastName,
-				token: 'fake-jwt-token',
+			console.log('body', body);
+			console.log('username', username);
+			const user = users.find((x) => {
+				return x.username === username
+					//&& x.password === password;
 			});
+			//if (!user) return error('Username or password is incorrect');
+
+			// let userForReturn : LoginResponse = {
+			// 	id: user.id,
+			// 	username: user.username,
+			// 	firstName: user.firstName,
+			// 	lastName: user.lastName,
+			// 	token: 'fake-jwt-token'
+			// }
+			let userForReturn : LoginResponse = {
+				id: 1,
+				username: 'Thomas.Clague',
+				firstName: 'Thomas',
+				lastName: 'Clague',
+				token: 'fake-jwt-token'
+			}
+			console.log('mock authentication response', userForReturn);
+			return ok(userForReturn);
 		}
 
 		function register() {
