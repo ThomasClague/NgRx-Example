@@ -8,7 +8,7 @@ import { RegisterRequest } from 'src/app/_interfaces/requests/auth/register-requ
 import { LoginResponse } from 'src/app/_interfaces/responses/auth/login-response';
 import { User } from 'src/app/_interfaces/user/user';
 import { AuthService } from 'src/app/_services/auth.service';
-import { login, loginSuccess, loginError, register } from './actions';
+import { login, loginSuccess, loginError, register, registerError, registerSuccess } from './actions';
 
 @Injectable()
 export class UserEffects {
@@ -27,7 +27,10 @@ export class UserEffects {
 					map((loginResponse: LoginResponse) =>
 						loginSuccess({ payload: loginResponse as User })
 					),
-					catchError((error) => of(loginError(error)))
+					catchError((err) => {
+						console.log(err.error.message);
+						return of(loginError({ payload: err.error.message }))
+					})
 				)
 			)
 		)
@@ -47,12 +50,18 @@ export class UserEffects {
 			map((action) => action.payload),
 			switchMap((payload: RegisterRequest) =>
 				this.authService.register(payload).pipe(
-					map((loginResponse: LoginResponse) =>
-						loginSuccess({ payload: loginResponse as User })
-					),
-					catchError((error) => of(loginError(error)))
+					map(() => registerSuccess()),
+					catchError((err) => of(registerError(err.error.message)))
 				)
 			)
 		)
+	);
+
+	registerSuccess$ = createEffect(() =>
+		this.actions$.pipe(
+			ofType(registerSuccess),
+			tap(() => this.router.navigate(['/']))
+		),
+		{ dispatch: false }
 	);
 }

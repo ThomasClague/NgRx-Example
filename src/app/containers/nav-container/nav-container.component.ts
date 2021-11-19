@@ -15,11 +15,13 @@ import {
 })
 export class NavContainerComponent implements OnInit {
 	isLoggedIn$: Observable<boolean>;
+	username$: Observable<string>;
 
 	constructor(private store$: Store<UserStoreState.State>) {}
 
 	ngOnInit(): void {
 		this.isLoggedIn$ = this.store$.select(UserStoreSelectors.isLoggedIn);
+		this.username$ = this.store$.select(UserStoreSelectors.getUsername);
 	}
 
 	logout() {

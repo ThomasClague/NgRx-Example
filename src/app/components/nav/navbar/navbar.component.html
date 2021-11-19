@@ -25,15 +25,9 @@
 				<li class="nav-item">
 					<a class="nav-link" [routerLink]="['/#']">Link 3</a>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link" [routerLink]="['/#']"
-						>Is Logged In: {{ isLoggedIn }}</a
-					>
-				</li>
 			</ul>
 			<ul class="navbar-nav ml-auto">
-				<ng-container *ngIf="!isLoggedIn; then login; else logout">
-				</ng-container>
+				<ng-container *ngIf="!isLoggedIn; then login; else logout"></ng-container>
 
 				<ng-template #login>
 					<li class="nav-item">
@@ -45,6 +39,9 @@
 				</ng-template>
 
 				<ng-template #logout>
+					<li class="nav-item">
+						<a class="nav-link" (click)="emitLogOutEvent()">{{username}}</a>
+					</li>
 					<li class="nav-item">
 						<a class="nav-link" (click)="emitLogOutEvent()">Logout</a>
 					</li>

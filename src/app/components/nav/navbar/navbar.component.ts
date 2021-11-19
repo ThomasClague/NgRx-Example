@@ -7,6 +7,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 	@Input() isLoggedIn: boolean;
+	@Input() username: string;
 
 	@Output() logOutEvent = new EventEmitter();
 

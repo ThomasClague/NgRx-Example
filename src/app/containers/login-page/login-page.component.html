@@ -1,5 +1,6 @@
 <app-login-form
 	[loginForm]="loginForm"
 	[loading]="isLoading$ | async"
+	[error]="error$ | async"
 	(loginEvent)="getValues()"
 ></app-login-form>

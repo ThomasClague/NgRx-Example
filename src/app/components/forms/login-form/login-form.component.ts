@@ -10,6 +10,7 @@ import { FormBase } from 'src/app/_shared/base/form-base/form-base.component';
 export class LoginFormComponent extends FormBase implements OnInit {
 	@Input() loginForm: FormGroup;
 	@Input() loading: boolean;
+	@Input() error: string;
 	@Output() loginEvent = new EventEmitter<FormGroup>();
 	constructor() {
 		super();
@@ -17,8 +18,6 @@ export class LoginFormComponent extends FormBase implements OnInit {
 
 	ngOnInit(): void {
 		this.form = this.loginForm;
-		this.isLoading = this.loading;
-		this.isLoading = this.loading;
 	}
 
 	submit(loginFormValue) {

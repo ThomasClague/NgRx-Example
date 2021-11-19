@@ -25,7 +25,7 @@ export const loginSuccess = createAction(
 
 export const loginError = createAction(
 	UserActionTypes.loginError,
-	props<{ payload: any }>()
+	props<{ payload: string }>()
 );
 
 export const register = createAction(
@@ -34,8 +34,7 @@ export const register = createAction(
 );
 
 export const registerSuccess = createAction(
-	UserActionTypes.registerSuccess,
-	props<{ payload: User }>()
+	UserActionTypes.registerSuccess
 );
 
 export const registerError = createAction(

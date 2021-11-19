@@ -1,0 +1,64 @@
+<div class="filter-bar__container mt-5">
+	<div class="container">
+		<form  [formGroup]="searchForm" (ngSubmit)="searchClicked()">
+			<div class="filter-bar">
+				<div class="form-row">
+					<div class="col-md-10 col-lg-11">
+						<div class="form-row">
+							<div class="form-group col-sm-6 col-md-3 mb-md-0">
+								<label for="make">Make</label>
+								<select #makeSelect
+										id="make"
+										class="form-control"
+										formControlName="makeId">
+									<option [value]="null">Please Select</option>
+									<option *ngFor="let make of makes"
+										[value]="make.key">{{make.value}}</option>
+								</select>
+							</div>
+							<div class="form-group col-sm-6 col-md-3 mb-md-0">
+								<label for="model">Model</label>
+								<select #modelSelect 
+										id="model" 
+										class="form-control"
+										formControlName="modelId">
+										<option [value]="null">Please Select</option>
+									<option *ngFor="let model of models"
+									[value]="model.key">{{model.value.value}}</option>
+								</select>
+							</div>
+							<div class="form-group col-sm-6 col-md-3 mb-md-0">
+								<label for="minimum-price">Minimum Price</label>
+								<select #minPriceSelect
+										id="minimum-price" 
+										class="form-control"
+										formControlName="minPrice">
+									<option [value]="null">Please Select</option>
+									<option *ngFor="let value of minCurrencies"
+									[value]="value">{{value | currency: 'GBP':'symbol':'3.0'}}</option>
+								</select>
+							</div>
+							<div class="form-group col-sm-6 col-md-3 mb-md-0">
+								<label for="maximum-price">Maximum Price</label>
+								<select #maxPriceSelect
+										id="maximum-price"
+										class="form-control"
+										formControlName="maxPrice">
+									<option [value]="null">Please Select</option>
+									<option *ngFor="let value of maxCurrencies"
+									[value]="value">{{value | currency: 'GBP':'symbol':'3.0'}}</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-2 col-lg-1 d-flex">
+						<button class="btn btn-primary filter-bar__search" type="submit">
+							<span class="sr-only">Search</span>
+							<i class="fa fa-search"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

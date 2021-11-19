@@ -1,5 +1,6 @@
 <app-register-form
 	[registerForm]="registerForm"
 	[loading]="isLoading$ | async"
+	[error]="error$ | async"
 	(registerEvent)="getValues()"
 ></app-register-form>

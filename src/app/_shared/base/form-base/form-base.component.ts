@@ -2,7 +2,6 @@ import { FormGroup } from '@angular/forms';
 
 export class FormBase {
 	form: FormGroup;
-	errors: string[] = [];
 	isLoading: boolean;
 
 	public validateControl(controlName: string) {

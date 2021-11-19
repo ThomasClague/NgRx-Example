@@ -22,11 +22,13 @@ export class RegisterPageComponent implements OnInit {
 
 	registerForm: FormGroup;
 	isLoading$: Observable<boolean>;
+	error$: Observable<string>;
 
 	ngOnInit(): void {
 		this.buildForm();
 
 		this.isLoading$ = this.store$.select(UserStoreSelectors.isLoading);
+		this.error$ = this.store$.select(UserStoreSelectors.error);
 	}
 
 	private buildForm() {

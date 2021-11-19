@@ -21,6 +21,8 @@ import { RegisterPageComponent } from './containers/register-page/register-page.
 import { LoginFormComponent } from './components/forms/login-form/login-form.component';
 import { RegisterFormComponent } from './components/forms/register-form/register-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SearchFormComponent } from './components/forms/search-form/search-form.component';
+import { SearchContainerComponent } from './containers/search-container/search-container.component';
 
 @NgModule({
 	declarations: [
@@ -35,6 +37,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 		RegisterPageComponent,
 		LoginFormComponent,
 		RegisterFormComponent,
+  SearchFormComponent,
+  SearchContainerComponent,
 	],
 	imports: [
 		BrowserModule,

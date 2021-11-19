@@ -22,11 +22,18 @@ export class LoginPageComponent implements OnInit {
 
 	loginForm: FormGroup;
 	isLoading$: Observable<boolean>;
+	error$: Observable<string>;
 
 	ngOnInit(): void {
 		this.buildForm();
 
 		this.isLoading$ = this.store$.select(UserStoreSelectors.isLoading);
+		this.error$ = this.store$.select(UserStoreSelectors.error);
+
+		this.isLoading$.subscribe(res => {
+			console.log('this.isLoading$', res);
+		})
+
 	}
 
 	private buildForm() {

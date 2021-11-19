@@ -7,13 +7,20 @@ const reducer = createReducer(
 	on(UserStoreActions.login, (state) => ({
 		...state,
 		isLoading: true,
+		error: null
 	})),
 	on(UserStoreActions.loginSuccess, (state, { payload }) => ({
 		...state,
 		user: payload,
 		isLoading: false,
 	})),
-	on(UserStoreActions.loginError, UserStoreActions.logout, (state) => ({
+	on(UserStoreActions.loginError, (state, { payload }) => ({
+		...state,
+		user: null,
+		isLoading: false,
+		error: payload
+	})),
+	on(UserStoreActions.logout, (state) => ({
 		...state,
 		user: null,
 		isLoading: false,

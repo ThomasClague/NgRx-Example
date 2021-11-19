@@ -7,9 +7,12 @@ import { UserReducer } from './user-store/reducer';
 import { RootStoreState } from '.';
 import { EffectsModule } from '@ngrx/effects';
 import { environment } from 'src/environments/environment';
+import { LookupsStoreModule } from './lookups-store/lookups-store.module';
+import { LookupsReducer } from './lookups-store/reducer';
 
 export const reducers: ActionReducerMap<RootStoreState.State> = {
 	userFeature: UserReducer,
+	lookupsFeature: LookupsReducer
 };
 
 @NgModule({
@@ -17,6 +20,7 @@ export const reducers: ActionReducerMap<RootStoreState.State> = {
 	imports: [
 		CommonModule,
 		UserStoreModule,
+		LookupsStoreModule,
 		StoreModule.forRoot({}),
 		EffectsModule.forRoot([]),
 		!environment.production ? StoreDevtoolsModule.instrument() : [],
