@@ -8,7 +8,6 @@ const reducer = createReducer(
 		...state,
 		isLoading: true,
 		error: null,
-		hasLoaded: false
 	})),
 	on(LookupsStoreActions.loadSuccess, (state, { payload }) => ({
 		...state,
@@ -22,7 +21,8 @@ const reducer = createReducer(
 		makes: null,
 		models: null,
 		isLoading: false,
-		error: payload
+		error: payload,
+		hasLoaded: false
 	}))
 );
 

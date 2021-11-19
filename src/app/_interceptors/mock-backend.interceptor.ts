@@ -12,12 +12,14 @@ import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 import { User } from '../_interfaces/user/user';
 import { LoginResponse } from '../_interfaces/responses/auth/login-response';
 import { RegisterRequest } from '../_interfaces/requests/auth/register-request';
+import { ToastrService } from 'ngx-toastr';
 
 // array in local storage for registered users
 let users = JSON.parse(localStorage.getItem('users')) || [];
 
 @Injectable()
 export class MockBackendInterceptor implements HttpInterceptor {
+
 	intercept(
 		request: HttpRequest<any>,
 		next: HttpHandler
@@ -33,6 +35,8 @@ export class MockBackendInterceptor implements HttpInterceptor {
 
 		function handleRoute() {
 			console.log('url', url);
+
+
 			switch (true) {
 				case url.endsWith('/users/authenticate') && method === 'POST':
 					return authenticate();
@@ -163,6 +167,7 @@ export class MockBackendInterceptor implements HttpInterceptor {
 		function getLookupData() {
 			return `
 			{
+
 				"makes": [
 					{ "key": 1, "value": "Aston Martin"},
 					{ "key": 2, "value": "Bentley"},
@@ -172,133 +177,133 @@ export class MockBackendInterceptor implements HttpInterceptor {
 					{ "key": 6, "value": "Vauxhaul"}
 				],
 				"models": [
-					{ 
-						"key": 1, 
+					{
+						"key": 1,
 						"value": {
-							"makeId": 1, 
+							"makeId": 1,
 							"value": "DB6"
 						}
 					},
-					{ 
-						"key": 2, 
+					{
+						"key": 2,
 						"value": {
-							"makeId": 1, 
+							"makeId": 1,
 							"value": "DBS"
 						}
 					},
-					{ 
-						"key": 3, 
+					{
+						"key": 3,
 						"value": {
-							"makeId": 1, 
+							"makeId": 1,
 							"value": "Vantage"
 						}
 					},
-					{ 
-						"key": 4, 
+					{
+						"key": 4,
 						"value": {
-							"makeId": 2, 
+							"makeId": 2,
 							"value": "Continental S"
 						}
 					},
-					{ 
-						"key": 5, 
+					{
+						"key": 5,
 						"value": {
-							"makeId": 2, 
+							"makeId": 2,
 							"value": "Continental T"
 						}
 					},
-					{ 
-						"key": 6, 
+					{
+						"key": 6,
 						"value": {
-							"makeId": 2, 
+							"makeId": 2,
 							"value": "Mulsanne"
 						}
 					},
-							{ 
-						"key": 7, 
+							{
+						"key": 7,
 						"value": {
-							"makeId": 3, 
+							"makeId": 3,
 							"value": "Fiesta"
 						}
 					},
-					{ 
-						"key": 8, 
+					{
+						"key": 8,
 						"value": {
-							"makeId": 3, 
+							"makeId": 3,
 							"value": "Focus"
 						}
 					},
-					{ 
-						"key": 9, 
+					{
+						"key": 9,
 						"value": {
-							"makeId": 3, 
+							"makeId": 3,
 							"value": "Focus RS"
 						}
 					},
-					{ 
-						"key": 10, 
+					{
+						"key": 10,
 						"value": {
-							"makeId": 4, 
+							"makeId": 4,
 							"value": "Defender"
 						}
 					},
-					{ 
-						"key": 11, 
+					{
+						"key": 11,
 						"value": {
-							"makeId": 4, 
+							"makeId": 4,
 							"value": "Discovery"
 						}
 					},
-					{ 
-						"key": 12, 
+					{
+						"key": 12,
 						"value": {
-							"makeId": 4, 
+							"makeId": 4,
 							"value": "Autobiography"
 						}
 					},
-					{ 
-						"key": 13, 
+					{
+						"key": 13,
 						"value": {
-							"makeId": 5, 
+							"makeId": 5,
 							"value": "Cooper"
 						}
 					},
-					{ 
-						"key": 14, 
+					{
+						"key": 14,
 						"value": {
-							"makeId": 5, 
+							"makeId": 5,
 							"value": "Cooper S"
 						}
 					},
-					{ 
-						"key": 15, 
+					{
+						"key": 15,
 						"value": {
-							"makeId": 5, 
+							"makeId": 5,
 							"value": "John Cooper Works"
 						}
 					},
-							{ 
-						"key": 16, 
+							{
+						"key": 16,
 						"value": {
-							"makeId": 6, 
+							"makeId": 6,
 							"value": "Astra"
 						}
 					},
-					{ 
-						"key": 17, 
+					{
+						"key": 17,
 						"value": {
-							"makeId": 6, 
+							"makeId": 6,
 							"value": "Corsa"
 						}
 					},
-					{ 
-						"key": 18, 
+					{
+						"key": 18,
 						"value": {
-							"makeId": 6, 
+							"makeId": 6,
 							"value": "Corsa VXR"
 						}
 					}
-				]   
+				]
 			}`
 		}
 	}

@@ -37,8 +37,8 @@ import { SearchContainerComponent } from './containers/search-container/search-c
 		RegisterPageComponent,
 		LoginFormComponent,
 		RegisterFormComponent,
-  SearchFormComponent,
-  SearchContainerComponent,
+  		SearchFormComponent,
+  		SearchContainerComponent,
 	],
 	imports: [
 		BrowserModule,
