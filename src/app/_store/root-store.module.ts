@@ -27,7 +27,8 @@ function localStorageSyncReducer(reducer: ActionReducer<RootStoreState.State>): 
 	})(reducer);
 }
 
-export const metaReducers: MetaReducer<any>[] = !environment.production ? [storeFreeze, localStorageSyncReducer] : [localStorageSyncReducer];
+//export const metaReducers: MetaReducer<any>[] = !environment.production ? [storeFreeze, localStorageSyncReducer] : [localStorageSyncReducer];
+export const metaReducers: MetaReducer<any>[] = [storeFreeze, localStorageSyncReducer];
 
 @NgModule({
 	declarations: [],
